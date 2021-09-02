@@ -7,15 +7,14 @@ import 'package:http/http.dart' as http;
 part 'model.g.dart';
 
 const SqfEntityTable tableMessage = SqfEntityTable(
-  tableName: 'message',
-  primaryKeyName: 'id',
-  useSoftDeleting: false,
-  primaryKeyType: PrimaryKeyType.integer_auto_incremental,
-  fields: [
-    SqfEntityField('title', DbType.text),
-    SqfEntityField('text', DbType.text)
-  ]
-);
+    tableName: 'message',
+    primaryKeyName: 'id',
+    useSoftDeleting: false,
+    primaryKeyType: PrimaryKeyType.integer_auto_incremental,
+    fields: [
+      SqfEntityField('title', DbType.text),
+      SqfEntityField('text', DbType.text)
+    ]);
 
 const seqIdentity = SqfEntitySequence(
   sequenceName: 'identity',

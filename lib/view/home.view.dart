@@ -17,7 +17,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-
   late AppStore _appStore;
   late HomeController _homeController;
 
@@ -48,9 +47,12 @@ class _HomeViewState extends State<HomeView> {
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: Column(
           children: [
-            _buildSpaceY(20),
             Expanded(child: MessageList()),
-            _buildSpaceY(20),
+            Divider(
+              height: 4,
+              thickness: 4,
+            ),
+            _buildSpaceY(5),
             _buildForm(context),
             _buildSpaceY(20),
           ],
@@ -59,23 +61,18 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-
-
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     AddMessageDialog addMessageDialog = new AddMessageDialog(context);
 
-    return AppBar(
-      title: Text('OpenZap!'),
-      actions: <Widget>[
-        IconButton(
-          icon: const Icon(Icons.add),
-          tooltip: 'Adicionar Mensagem',
-          onPressed: () {
-            addMessageDialog.showMessageDialog();
-          },
-        ),
-      ]
-    );
+    return AppBar(title: Text('OpenZap!'), actions: <Widget>[
+      IconButton(
+        icon: const Icon(Icons.add),
+        tooltip: 'Adicionar Mensagem',
+        onPressed: () {
+          addMessageDialog.showMessageDialog();
+        },
+      ),
+    ]);
   }
 
   Widget _buildSpaceY(double value) {
@@ -87,8 +84,8 @@ class _HomeViewState extends State<HomeView> {
   Widget _buildForm(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Container(
-        child: Column(
+      child: Expanded(
+        child: ListView(
           children: [
             _buildMessageFild(context),
             _buildSpaceY(20),
@@ -146,7 +143,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget _buildMessageFild(BuildContext context) {
-    return Observer(      
+    return Observer(
       builder: (_) => TextFormField(
         controller: new TextEditingController(text: _appStore.message.text),
         autofocus: false,
@@ -170,9 +167,7 @@ class _HomeViewState extends State<HomeView> {
         ),
         maxLines: 3,
         textInputAction: TextInputAction.done,
-        onSaved: (value) => {
-          _message = value
-        },
+        onSaved: (value) => {_message = value},
       ),
     );
   }
@@ -195,7 +190,8 @@ class _HomeViewState extends State<HomeView> {
       _message = '';
       _phoneNumber = '';
     } else {
-      SnackBarAlert.buildSnackBarAlert(context, "WhatsApp não encontrado em seu dispositivo");
+      SnackBarAlert.buildSnackBarAlert(
+          context, "WhatsApp não encontrado em seu dispositivo");
     }
   }
 

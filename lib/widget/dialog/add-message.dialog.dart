@@ -13,27 +13,32 @@ class AddMessageDialog {
   late AppStore _appStore;
   // TextEditingController _titleController = new TextEditingController();
   // TextEditingController _messageController = new TextEditingController();
-  
+
   AddMessageDialog(BuildContext context) {
     _context = context;
     _appStore = Provider.of<AppStore>(context);
     _homeController = new HomeController(_appStore);
-  } 
-    
+  }
+
   showMessageDialog() {
     showDialog(
         context: _context,
         builder: (_) {
           return AlertDialog(
-            title: Text('Mensagem', style: TextStyle(color: Theme.of(_context).primaryColorDark,),),
-            content: Container(
-              height: 300,
+            title: Text(
+              'Mensagem',
+              style: TextStyle(
+                color: Theme.of(_context).primaryColorDark,
+              ),
+            ),
+            content: SingleChildScrollView(
+              // height: 300,
               child: Form(
                 key: _formKey,
                 child: Column(children: [
                   TextFormField(
                     autofocus: true,
-                      decoration: InputDecoration(
+                    decoration: InputDecoration(
                       labelText: "Título",
                       labelStyle: TextStyle(
                         color: Theme.of(_context).primaryColorDark,
@@ -47,20 +52,16 @@ class AddMessageDialog {
                         color: Theme.of(_context).unselectedWidgetColor,
                       ),
                     ),
-                    onSaved: (value) => {
-                      _message.title = value
-                    },
-                    onFieldSubmitted: (value) {
-                    },
+                    onSaved: (value) => {_message.title = value},
+                    onFieldSubmitted: (value) {},
                     validator: (value) {
-                      if (value! == '')
-                        return 'Informe um título';
-              
+                      if (value! == '') return 'Informe um título';
+
                       return null;
                     },
                   ),
                   TextFormField(
-                      decoration: InputDecoration(
+                    decoration: InputDecoration(
                       labelText: "Mensagem",
                       labelStyle: TextStyle(
                         color: Theme.of(_context).primaryColorDark,
@@ -75,13 +76,10 @@ class AddMessageDialog {
                       ),
                     ),
                     maxLines: 8,
-                    onSaved: (value) => {
-                      _message.text = value
-                    }, 
+                    onSaved: (value) => {_message.text = value},
                     validator: (value) {
-                      if (value! == '')
-                        return 'Informe uma mensagem';
-              
+                      if (value! == '') return 'Informe uma mensagem';
+
                       return null;
                     },
                   ),
@@ -89,12 +87,14 @@ class AddMessageDialog {
               ),
             ),
             actions: <Widget>[
-              ElevatedButton(onPressed: () => {
-                Navigator.of(_context).pop()
-              }, child: Text('Cancelar')),
-              ElevatedButton(onPressed: () => {
-                _onSubmit(),
-              }, child: Text('Adicionar'))
+              ElevatedButton(
+                  onPressed: () => {Navigator.of(_context).pop()},
+                  child: Text('Cancelar')),
+              ElevatedButton(
+                  onPressed: () => {
+                        _onSubmit(),
+                      },
+                  child: Text('Adicionar'))
             ],
           );
         });
@@ -104,7 +104,7 @@ class AddMessageDialog {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       var result = await _homeController.add(_message);
-      if(result) {
+      if (result) {
         Navigator.of(_context).pop();
         SnackBarAlert.buildSnackBarSuccefull(_context, "Mensagem criada");
       } else {
