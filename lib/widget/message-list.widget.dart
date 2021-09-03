@@ -17,7 +17,7 @@ class MessageList extends StatelessWidget {
       builder: (_) => OZBusy(
         busy: _appStore.busy,
         child: _appStore.messages.length == 0
-            ? Center(child: Text("Nenhuma tarefa encontrada"))
+            ? Center(child: Text("Nenhuma mensagem cadastrada"))
             : ListView.builder(
                 itemCount: _appStore.messages.length,
                 itemBuilder: (context, index) {
