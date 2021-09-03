@@ -164,7 +164,7 @@ class _HomeViewState extends State<HomeView> {
           fontSize: 20,
           color: Theme.of(context).primaryColorDark,
         ),
-        maxLines: 3,
+        maxLines: 4,
         textInputAction: TextInputAction.done,
         onSaved: (value) => {_message = value},
       ),
