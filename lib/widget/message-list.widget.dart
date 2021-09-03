@@ -11,7 +11,7 @@ class MessageList extends StatelessWidget {
   Widget build(BuildContext context) {
     final _appStore = Provider.of<AppStore>(context);
     final _homeController = new HomeController(_appStore);
-    int _selectedIndex = -1;
+    int _selectedId = -1;
 
     return Observer(
       builder: (_) => OZBusy(
@@ -44,10 +44,10 @@ class MessageList extends StatelessWidget {
                           message.text.toString(),
                           style: TextStyle(fontSize: 12),
                         ),
-                        selected: _selectedIndex == index,
+                        selected: _selectedId == message.id,
                         onTap: () {
                           _homeController.setMessage(message);
-                          _selectedIndex = index;
+                          _selectedId = message.id;
                         },
                       ),
                       Divider(
