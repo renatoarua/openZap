@@ -3,7 +3,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:openzap/controller/home.controller.dart';
 import 'package:openzap/store/app.store.dart';
 import 'package:openzap/widget/oz-busy.widget.dart';
-import 'package:openzap/widget/snack-bar/snack-bar.snackBar.dart';
 import 'package:provider/provider.dart';
 
 class MessageList extends StatelessWidget {
