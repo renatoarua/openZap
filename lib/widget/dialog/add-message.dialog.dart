@@ -17,7 +17,7 @@ class AddMessageDialog {
   AddMessageDialog(BuildContext context) {
     _context = context;
     _appStore = Provider.of<AppStore>(context);
-    _homeController = new HomeController(_appStore);
+    _homeController = new HomeController(_appStore, context);
   }
 
   showMessageDialog() {

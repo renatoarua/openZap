@@ -1,13 +1,17 @@
+import 'package:flutter/widgets.dart';
 import 'package:openzap/repository/entity/message.entity.dart';
 import 'package:openzap/repository/message.repository.dart';
 import 'package:openzap/store/app.store.dart';
+import 'package:openzap/widget/snack-bar/snack-bar.snackBar.dart';
 
 class HomeController {
   late AppStore _appStore;
   late MessageRepository _messageRepository;
+  late BuildContext _context;
 
-  HomeController(AppStore appStore) {
+  HomeController(AppStore appStore, BuildContext context) {
     _appStore = appStore;
+    _context = context;
     _messageRepository = new MessageRepository();
   }
 
@@ -26,11 +30,15 @@ class HomeController {
     return result;
   }
 
-  Future<bool> remove(Message message) async {
+  remove(Message message) async {
     _appStore.busy = true;
     var result = await _messageRepository.delete(message);
+    if (result)
+      SnackBarAlert.buildSnackBarSuccefull(_context, "Mensagem deletada");
+    else
+      SnackBarAlert.buildSnackBarError(_context, "Mensagem não deletada");
+
     await loadPage();
-    return result;
   }
 
   setMessage(Message message) {

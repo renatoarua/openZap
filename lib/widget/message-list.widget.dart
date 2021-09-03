@@ -10,7 +10,7 @@ class MessageList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _appStore = Provider.of<AppStore>(context);
-    final _homeController = new HomeController(_appStore);
+    final _homeController = new HomeController(_appStore, context);
     int _selectedId = -1;
 
     return Observer(
@@ -30,13 +30,7 @@ class MessageList extends StatelessWidget {
                           icon: const Icon(Icons.delete, color: Colors.red),
                           tooltip: 'Deletar Mensagem',
                           onPressed: () async {
-                            var result = await _homeController.remove(message);
-                            if (result)
-                              SnackBarAlert.buildSnackBarSuccefull(
-                                  context, "Mensagem deletada");
-                            else
-                              SnackBarAlert.buildSnackBarError(
-                                  context, "Mensagem não deletada");
+                            await _homeController.remove(message);
                           },
                         ),
                         title: Text(message.title.toString()),

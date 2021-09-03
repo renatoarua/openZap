@@ -33,7 +33,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     _appStore = Provider.of<AppStore>(context);
-    _homeController = new HomeController(_appStore);
+    _homeController = new HomeController(_appStore, context);
 
     _homeController.loadPage();
     return _buildHome(context);
