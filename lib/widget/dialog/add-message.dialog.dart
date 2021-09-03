@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:openzap/controller/home.controller.dart';
-import 'package:openzap/model/model.dart';
+import 'package:openzap/repository/entity/message.entity.dart';
 import 'package:openzap/store/app.store.dart';
 import 'package:openzap/widget/snack-bar/snack-bar.snackBar.dart';
 import 'package:provider/provider.dart';

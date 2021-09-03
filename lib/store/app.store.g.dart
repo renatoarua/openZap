@@ -33,7 +33,7 @@ mixin _$AppStore on _AppStore, Store {
   }
 
   @override
-  set message(dynamic value) {
+  set message(Message value) {
     _$messageAtom.reportWrite(value, super.message, () {
       super.message = value;
     });
@@ -57,7 +57,7 @@ mixin _$AppStore on _AppStore, Store {
   final _$_AppStoreActionController = ActionController(name: '_AppStore');
 
   @override
-  void setMessage(dynamic message) {
+  void setMessage(Message message) {
     final _$actionInfo =
         _$_AppStoreActionController.startAction(name: '_AppStore.setMessage');
     try {
@@ -69,8 +69,8 @@ mixin _$AppStore on _AppStore, Store {
 
   @override
   void clearMessage() {
-    final _$actionInfo = _$_AppStoreActionController.startAction(
-        name: '_AppStore._clearMessage');
+    final _$actionInfo =
+        _$_AppStoreActionController.startAction(name: '_AppStore.clearMessage');
     try {
       return super.clearMessage();
     } finally {
@@ -79,7 +79,7 @@ mixin _$AppStore on _AppStore, Store {
   }
 
   @override
-  void add(dynamic message) {
+  void add(Message message) {
     final _$actionInfo =
         _$_AppStoreActionController.startAction(name: '_AppStore.add');
     try {
@@ -101,7 +101,7 @@ mixin _$AppStore on _AppStore, Store {
   }
 
   @override
-  void remove(dynamic message) {
+  void remove(Message message) {
     final _$actionInfo =
         _$_AppStoreActionController.startAction(name: '_AppStore.remove');
     try {

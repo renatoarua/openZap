@@ -1,9 +1,10 @@
 import 'package:mobx/mobx.dart';
-import 'package:openzap/model/model.dart';
+import 'package:openzap/repository/entity/message.entity.dart';
 
 part 'app.store.g.dart';
 
 class AppStore = _AppStore with _$AppStore;
+
 abstract class _AppStore with Store {
   @observable
   bool busy = false;

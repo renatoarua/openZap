@@ -1,15 +1,12 @@
-
-
+import 'package:openzap/repository/entity/message.entity.dart';
 import 'package:openzap/repository/message.repository.dart';
 import 'package:openzap/store/app.store.dart';
-import 'package:openzap/model/model.dart';
 
 class HomeController {
-  
   late AppStore _appStore;
   late MessageRepository _messageRepository;
-  
-  HomeController(AppStore appStore) { 
+
+  HomeController(AppStore appStore) {
     _appStore = appStore;
     _messageRepository = new MessageRepository();
   }
@@ -20,7 +17,7 @@ class HomeController {
     _appStore.removeAll();
     _appStore.setAll(list);
     _appStore.busy = false;
-}
+  }
 
   Future<bool> add(Message message) async {
     _appStore.busy = true;
@@ -33,7 +30,7 @@ class HomeController {
     _appStore.busy = true;
     var result = await _messageRepository.delete(message);
     await loadPage();
-    return result.success;
+    return result;
   }
 
   setMessage(Message message) {
