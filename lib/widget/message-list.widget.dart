@@ -29,7 +29,35 @@ class MessageList extends StatelessWidget {
                           icon: const Icon(Icons.delete, color: Colors.red),
                           tooltip: 'Deletar Mensagem',
                           onPressed: () async {
-                            await _homeController.remove(message);
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Deletar Mensagem",
+                                      style: TextStyle(
+                                        color:
+                                            Theme.of(context).primaryColorDark,
+                                      )),
+                                  content: Text(
+                                      "Deseja deletar a mensagem ${message.title}?"),
+                                  actions: <Widget>[
+                                    ElevatedButton(
+                                      child: new Text("Cancelar"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                    ElevatedButton(
+                                      child: new Text("Deletar"),
+                                      onPressed: () async {
+                                        Navigator.of(context).pop();
+                                        await _homeController.remove(message);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                           },
                         ),
                         title: Text(message.title.toString()),
