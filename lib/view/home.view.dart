@@ -54,7 +54,6 @@ class _HomeViewState extends State<HomeView> {
             ),
             _buildSpaceY(5),
             _buildForm(context),
-            _buildSpaceY(20),
           ],
         ),
       ),
